@@ -63,7 +63,6 @@ const findUserByData = (data) => {
 };
 
 app.get("/users", (req, res) => {
-  console.log("yes");
   const { name, job } = req.query;
 
   let result = findUserByData({ name, job });
@@ -89,10 +88,8 @@ app.delete("/users/:id", (req, res) => {
   try {
     let result = deleteUserById(id);
   } catch (err) {
-      console.log("bad")
     res.status(500).send()
   }
-  console.log("good")
   console.log(users)
 
   res.status(204).send()
