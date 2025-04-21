@@ -1,4 +1,4 @@
-function Table({ characterData }) {
+function Table({ characterData, removeCharacter }) {
   return (
     <table>
       <thead>
@@ -12,6 +12,11 @@ function Table({ characterData }) {
           <tr key={index}>
             <td>{char.name}</td>
             <td>{char.job}</td>
+            <td>
+              <button onClick={() => removeCharacter(index)}>
+                Delete
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>

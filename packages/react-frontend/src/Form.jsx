@@ -30,6 +30,7 @@ function Form({ handleSubmit }) {
         value={formData.job}
         onChange={handleChange}
       />
+      
       <button type="submit">Add</button>
     </form>
   );

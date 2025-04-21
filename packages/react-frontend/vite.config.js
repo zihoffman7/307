@@ -8,5 +8,11 @@ export default defineConfig({
     rollupOptions: {
       input: '/src/main.jsx'
     }
+  },
+  server: {
+    port: 5173,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   }
 })
