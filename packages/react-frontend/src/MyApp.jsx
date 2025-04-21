@@ -8,10 +8,6 @@ import Form from './Form';
 function MyApp() {
   const [characters, setCharacters] = useState([]);
 
-  const removeCharacter = id => {
-
-  }
-
   function updateListDelete(id) {
     deleteUser(id)
       .then((res) => {
