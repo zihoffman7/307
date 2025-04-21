@@ -47,9 +47,11 @@ app.get("/", (req, res) => {
 
 
 const deleteUserById = (id) => {
-  users["users_list"] = users["users_list"].filter(
-    (user) => user["id"] !== id
-  );
+  const index = users["users_list"].findIndex((user) => user["id"] === id);
+  if (index === -1) {
+    throw new Error('User not found');
+  }
+  users["users_list"].splice(index, 1);
 };
 
 const findUserByData = (data) => {
@@ -90,13 +92,11 @@ app.get("/users/:id", (req, res) => {
 app.delete("/users/:id", (req, res) => {
   const id = req.params["id"];
   try {
-    let result = deleteUserById(id);
+    deleteUserById(id);
+    res.status(204).send();
   } catch (err) {
-    res.status(500).send()
+    res.status(404).send('User not found');
   }
-  console.log(users)
-
-  res.status(204).send()
 });
 
 const addUser = (user) => {

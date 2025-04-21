@@ -10,11 +10,11 @@ function Table({ characterData, removeCharacter }) {
       <tbody>
         {characterData.map((char, index) => (
           <tr key={index}>
-            <td hidden>{char.id}</td>
+            <td>{char.id}</td>
             <td>{char.name}</td>
             <td>{char.job}</td>
             <td>
-              <button onClick={() => removeCharacter(index)}>
+              <button onClick={() => removeCharacter(char.id)}>
                 Delete
               </button>
             </td>

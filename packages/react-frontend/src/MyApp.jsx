@@ -8,9 +8,34 @@ import Form from './Form';
 function MyApp() {
   const [characters, setCharacters] = useState([]);
 
-  const removeCharacter = index => {
-    const updatedCharacters = characters.filter((_, i) => i !== index)
-    setCharacters(updatedCharacters)
+  const removeCharacter = id => {
+
+  }
+
+  function updateListDelete(id) {
+    deleteUser(id)
+      .then((res) => {
+        if (res.status === 204) {
+          const updatedCharacters = characters.filter((char) => char.id !== id)
+          setCharacters(updatedCharacters)
+        } else {
+          console.log(`Bad status: ${res.status}`)
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function deleteUser(id) {
+    const promise = fetch(`http://localhost:8000/users/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    });
+
+    return promise;
   }
 
   function fetchUsers() {
@@ -59,7 +84,7 @@ function MyApp() {
 
   return (
     <div className="container">
-      <Table characterData={characters} removeCharacter={removeCharacter} />
+      <Table characterData={characters} removeCharacter={updateListDelete} />
       <Form handleSubmit={updateList} />
     </div>
   );
