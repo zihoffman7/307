@@ -20,14 +20,24 @@ function MyApp() {
 
   function updateList(person) {
     postUser(person)
-      .then(() => setCharacters([...characters, person]))
+      .then((res) => {
+        if (res.status === 201) {
+          res.json()
+          .then((data) => {
+            console.log(data);
+            setCharacters([...characters, data])
+        })
+    } else {
+          console.log(`Bad status: ${res.status}`)
+        }
+      })
       .catch((error) => {
         console.log(error);
       });
   }
 
   function postUser(person) {
-    const promise = fetch("Http://localhost:8000/users", {
+    const promise = fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -50,7 +60,7 @@ function MyApp() {
   return (
     <div className="container">
       <Table characterData={characters} removeCharacter={removeCharacter} />
-      <Form handleSubmit={setCharacters} />
+      <Form handleSubmit={updateList} />
     </div>
   );
 }

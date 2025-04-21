@@ -10,7 +10,7 @@ function Form({ handleSubmit }) {
 
   const submitForm = (e) => {
     e.preventDefault();
-    handleSubmit(prev => [...prev, formData]);
+    handleSubmit(formData)
     setFormData({ name: '', job: '' });
   }
 
@@ -30,7 +30,7 @@ function Form({ handleSubmit }) {
         value={formData.job}
         onChange={handleChange}
       />
-      
+
       <button type="submit">Add</button>
     </form>
   );

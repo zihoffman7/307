@@ -10,6 +10,7 @@ function Table({ characterData, removeCharacter }) {
       <tbody>
         {characterData.map((char, index) => (
           <tr key={index}>
+            <td hidden>{char.id}</td>
             <td>{char.name}</td>
             <td>{char.job}</td>
             <td>
