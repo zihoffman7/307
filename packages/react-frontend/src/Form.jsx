@@ -27,6 +27,7 @@ function Form({ handleSubmit }) {
         type="text"
         name="job"
         placeholder="Job"
+        minlength="3"
         value={formData.job}
         onChange={handleChange}
       />
